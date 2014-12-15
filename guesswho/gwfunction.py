@@ -1,4 +1,4 @@
-import picamera,time
+import picamera,time,json
 
 
 #
@@ -57,4 +57,21 @@ def getChar():
     profilelist = [name,hair,eyes,glasses,gender,hat,facial]
 
     return profilelist
-    
+
+def saveProfile():
+    getChar()
+    profiles.append(profile)
+    with open(profiles.txt, mode='r') as p:
+            json.dump(profiles,p)
+
+def loadProfile():
+    try:
+        with open("profiles.txt", mode="r") as p:
+            profiles = json.load(p)
+            print(profiles)
+    except IOError:
+        print("Profiles.txt not found. Creating a new profile")
+        global profiles
+        profiles=[]
+        saveProfile()
+            
