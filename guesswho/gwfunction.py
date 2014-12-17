@@ -23,7 +23,7 @@ def getPic(name):
 #
 def getChar():
 
-    hairList=["Brown","Blonde","Ginger","Bald"]
+    hairList=["Brown","Blonde","Ginger","Bald","Grey"]
     eyeList=["Brown","Green","Blue","Grey","Hazel"]
     glassesList=["y","n"]
     genderList=["Male","Female","Other"]
@@ -31,12 +31,13 @@ def getChar():
     facialList=["y","n"]
     
     
+    
     name = ""
     while name == "":
         name = input("What is your name?")
     hair = ""
     while not (hair in hairList):
-        hair = input("what colour hair do you have? (Brown/Blonde/Ginger/Bald)")
+        hair = input("what colour hair do you have? (Brown/Blonde/Ginger/Grey/Bald)")
     eyes = ""
     while not (eyes in eyeList):
         eyes = input("What colour eyes do you have? (Brown/Green/Blue/Grey/Hazel)")
@@ -54,14 +55,14 @@ def getChar():
         facial = input("Do you have facial hair? (y/n)")
     filename = getPic(name)
 
-    profilelist = [name,hair,eyes,glasses,gender,hat,facial]
+    profileList = [name,hair,eyes,glasses,gender,hat,facial,filename]
 
-    return profilelist
+    return profileList
 
-def saveProfile():
-    getChar()
+def saveProfile(profiles):
+    profile = getChar()
     profiles.append(profile)
-    with open(profiles.txt, mode='r') as p:
+    with open("profiles.txt", mode="w") as p:
             json.dump(profiles,p)
 
 def loadProfile():
@@ -71,7 +72,6 @@ def loadProfile():
             print(profiles)
     except IOError:
         print("Profiles.txt not found. Creating a new profile")
-        global profiles
         profiles=[]
-        saveProfile()
+    return profiles
             
