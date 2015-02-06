@@ -8,6 +8,7 @@ GPIO.setup(11,GPIO.OUT)
 
 #function definition
 
+#Defines a dot in the program (when 'e' is written, it will change to one dot)
 def dot():
         print('.', end="")
         GPIO.output(11,False)
@@ -16,6 +17,7 @@ def dot():
         time.sleep(0.5)
 	
 
+#Defines a dash in the program (when 'a' is written, it will change to '.-'
 def dash():
         print('_', end="")
         GPIO.output(11,False)
